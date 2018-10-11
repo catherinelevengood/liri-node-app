@@ -13,7 +13,20 @@ var liriSearch = process.argv[3];
 // Concert-this-Method
 var concertThis = function(liriSearch) {
     console.log(liriSearch);
-}
+
+    // This is using the npm package who call the bandsintown
+    request("https://rest.bandsintown.com/artists/" + liriSearch + "/events?app_id=codingbootcamp", function(error, response, body) {
+    
+        // If there were no errors and the 	response code was 200 (i.e. the request was successful)...
+        if (!error && response.statusCode === 200) {
+			console.log(body);
+            
+        }
+        else{
+            console.log(error);
+        }
+      });
+    }
 
 
 switch (liriMethod) {
@@ -32,6 +45,7 @@ switch (liriMethod) {
          
 default: console.log("command dosen't match:available commands are: concert-this, spotify-this-song,movie-this,do-what-it-says:")
 }
+
 
 
 
