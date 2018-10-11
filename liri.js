@@ -19,9 +19,25 @@ var concertThis = function(liriSearch) {
     
         // If there were no errors and the 	response code was 200 (i.e. the request was successful)...
         if (!error && response.statusCode === 200) {
-			console.log(body);
             
+            
+            
+         //transform the body string into json object JSON.parse()    
+        var jsonBody = JSON.parse(body)
+
+        //First OBject in the metalicca array
+        //console.log(jsonBody[0]);
+        // Venue Object inside the metallica array jsonBody[0]venue 
+       // console.log(jsonBody[0].venue)
+        // Acceessing the name variable inside of venue object
+        console.log("Concert Venue: " + jsonBody[0].venue.name)
+        // accessing the datetime variable inside of jsonBody
+        console.log("Concert Time: " + jsonBody[0].datetime)
+        //Access the City and region the venue is in
+        console.log("Concert Location: " + jsonBody[0].venue.city +", "+ jsonBody[0].venue.region)
+    
         }
+
         else{
             console.log(error);
         }
