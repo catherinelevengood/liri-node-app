@@ -44,14 +44,64 @@ var concertThis = function(liriSearch) {
     }
 
     //TODO 1
-    var movieThis = function(liriSearch){
+    var spotify = function(liriSearch){
+        var IsInput = userInput === "" ? userInput = "Ace of Base" : userInput = userInput;
+        var spotify = new spotifyReg(keys.spotifykeys);
+
+        spotify.lirisearch({
+            type: "track",
+            quert: userInput,
+            limit: 1
+        },function(err, data){
+            if(err) {
+                return console.log(err);
+
+            } else {
+                //artist's namne
+                console.log("Artist:" + data.track.items[0].album.artist[0].name);
+            }
+        }   
+     )
+
 
 
     }
 
     //TODO 2
 
-    var spotifyThis = function(liriSearch){
+    var movieThis= function(liriSearch){
+
+        // Then run a request to the OMDB API with the movie specified
+    request("http://www.omdbapi.com/?t=" + liriSearch + "&y=&plot=short&tomatoes=true&apikey=trilogy", function(error, response, body) {
+
+    // If the request is successful (i.e. if the response status code is 200)
+    if (!error && response.statusCode === 200) {
+
+        var jsonBody = JSON.parse(body)
+
+  
+      // Parse the body of the site and recover just the imdbRating
+      // (Note: The syntax below for parsing isn't obvious. Just spend a few moments dissecting it).
+      console.log("The movie's rating is: " + jsonBody.imdbRating);
+      console.log("Title: " + jsonBody.Title);
+      console.log("Year: " + jsonBody.Year);
+      console.log("Rotten Tomatoes Rating: " + jsonBody.tomatoeMeter);
+      console.log("Country: " + jsonBody.Country);
+      console.log("Language: " + jsonBody.Language);
+      console.log("Plot: " + jsonBody.Plot);
+      console.log("Actors: " + jsonBody.Actors);
+      
+      
+      
+      
+      
+      
+      
+
+    }
+  });
+  
+
 
     }
 
