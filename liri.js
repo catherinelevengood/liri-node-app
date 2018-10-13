@@ -51,9 +51,9 @@ var concertThis = function(liriSearch) {
     
     }
 
-        spotify.lirisearch({
+        spotify.search({
             type: "track",
-            quert: userInput,
+            query: liriSearch,
             limit: 1
         },function(err, data){
             if(err) {
@@ -61,7 +61,12 @@ var concertThis = function(liriSearch) {
 
             } else {
                 //artist's namne
-                console.log("Artist:" + data.track.items[0].album.artist[0].name);
+                console.log("Artist:" + data.tracks.items[0].artists[0].name);
+                console.log("Name:" + data.tracks.items[0].name);
+                console.log("Album:" + data.tracks.items[0].album.name);
+                console.log("Link: " + data.tracks.items[0].external_urls.spotify)
+
+
             }
         }   
      )
@@ -109,9 +114,42 @@ var concertThis = function(liriSearch) {
 
     //TODO 3
 
-    var doWhatItSays = function(){
+    var doWhatItSays = function() {
 
-    }
+        console.log(liriMethod);
+        console.log(liriSearch)
+        fs.readFile('./random.txt', 'utf8', function (error, data) {
+            if (error) {
+                console.log('ERROR: Reading file' + error);
+                return;
+            } else {
+                // Split out the command name and the parameter name
+                var inputString = data.split(',');
+                var liriMethod = inputString[0];
+                var liriSearch = inputString[1];
+
+                console.log(liriMethod);
+                console.log(liriSearch);
+
+                
+                switch (liriMethod) {
+                    case "concert-this":
+                         concertThis(liriSearch)
+                        break;
+                    case "spotify-this-song":
+                         spotifyThis(liriSearch)
+                         break;
+                    case "movie-this":
+                         movieThis(liriSearch)
+                         break;
+                        default: 
+                        console.log("command dosen't match:available commands are: concert-this, spotify-this-song,movie-this,do-what-it-says:")
+                                }
+                            }
+                        });
+                    }
+    
+
 
 switch (liriMethod) {
     case "concert-this":
@@ -129,16 +167,3 @@ switch (liriMethod) {
          
 default: console.log("command dosen't match:available commands are: concert-this, spotify-this-song,movie-this,do-what-it-says:")
 }
-
-
-
-
-    
-
-
-
- 
-
-        
-        
-    
