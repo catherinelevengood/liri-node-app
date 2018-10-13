@@ -44,9 +44,12 @@ var concertThis = function(liriSearch) {
     }
 
     //TODO 1
-    var spotify = function(liriSearch){
-        var IsInput = userInput === "" ? userInput = "Ace of Base" : userInput = userInput;
-        var spotify = new spotifyReg(keys.spotifykeys);
+    var spotifyThis = function(liriSearch){
+
+    if(liriSearch == null || liriSearch == undefined){
+        var liriSearch = "The Sign";
+    
+    }
 
         spotify.lirisearch({
             type: "track",
@@ -91,14 +94,7 @@ var concertThis = function(liriSearch) {
       console.log("Plot: " + jsonBody.Plot);
       console.log("Actors: " + jsonBody.Actors);
       
-      
-      
-      
-      
-      
-      
-
-    }
+      }
   });
   
 
