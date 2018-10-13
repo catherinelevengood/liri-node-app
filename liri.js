@@ -73,6 +73,10 @@ var concertThis = function(liriSearch) {
     //TODO 2
 
     var movieThis= function(liriSearch){
+        if(liriSearch == null || liriSearch == undefined){
+            var liriSearch = "Mr. Nobody";
+        
+        }
 
         // Then run a request to the OMDB API with the movie specified
     request("http://www.omdbapi.com/?t=" + liriSearch + "&y=&plot=short&tomatoes=true&apikey=trilogy", function(error, response, body) {
